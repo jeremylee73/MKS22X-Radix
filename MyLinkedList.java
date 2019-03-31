@@ -8,7 +8,21 @@ public class MyLinkedList<E>{
   }
 
   public String toString(){
-    return "";
+    String ans = "[";
+    if (end == null){
+      return "[]";
+    }
+    Node current = start;
+    ans += current.getData() + ",";
+    while (current.getNext() != null){
+      current = current.getNext();
+      if (current.getNext().getNext() == null){
+        ans += current.getData() + "]";
+      } else {
+        ans += current.getData() + ",";
+      }
+    }
+    return ans;
   }
 
   public void clear(){
