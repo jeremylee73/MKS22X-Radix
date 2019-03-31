@@ -12,7 +12,9 @@ public class MyLinkedList<E>{
   }
 
   public void clear(){
-
+    size = 0;
+    start = null;
+    end = null;
   }
 
   public boolean add(E e){
