@@ -56,4 +56,9 @@ public class MyLinkedList<E>{
   public E removeFront(){
     return start.getData();
   }
+
+  public static void main(String[] args){
+    MyLinkedList<Integer> test = new MyLinkedList<Integer>();
+    System.out.println(test);
+  }
 }
