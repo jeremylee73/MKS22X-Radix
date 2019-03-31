@@ -13,15 +13,11 @@ public class MyLinkedList<E>{
       return "[]";
     }
     Node current = start;
-    ans += current.getData() + ",";
     while (current.getNext() != null){
+      ans += current.getData() + ",";
       current = current.getNext();
-      if (current.getNext().getNext() == null){
-        ans += current.getData() + "]";
-      } else {
-        ans += current.getData() + ",";
-      }
     }
+    ans += current.getData() + "]";
     return ans;
   }
 
@@ -32,6 +28,15 @@ public class MyLinkedList<E>{
   }
 
   public boolean add(E e){
+    if (end == null) { // if list is totally empty
+      end = new Node(e,end,null);
+      start = end;
+    } else {
+      Node newNode = new Node(e, end.getPrev(), null);
+      end.setNext(newNode);
+      end = newNode;
+    }
+    size++;
     return true;
   }
 
@@ -59,6 +64,10 @@ public class MyLinkedList<E>{
 
   public static void main(String[] args){
     MyLinkedList<Integer> test = new MyLinkedList<Integer>();
+    System.out.println(test);
+    test.add(1);
+    test.add(2);
+    test.add(3);
     System.out.println(test);
   }
 }
