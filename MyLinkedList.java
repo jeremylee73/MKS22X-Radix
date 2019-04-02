@@ -62,6 +62,7 @@ public class MyLinkedList<E>{
     E ans = start.getData();
     start = start.getNext();
     start.setPrev(null);
+    size--;
     return ans;
   }
 
