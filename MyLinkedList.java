@@ -59,6 +59,11 @@ public class MyLinkedList<E>{
   }
 
   public E removeFront(){
+    if (size == 1){
+      E ans = start.getData();
+      clear();
+      return ans;
+    }
     E ans = start.getData();
     start = start.getNext();
     start.setPrev(null);
@@ -73,7 +78,9 @@ public class MyLinkedList<E>{
     test.add(2);
     test.add(3);
     System.out.println(test);
-    test.removeFront();
+    System.out.println(test.removeFront());
+    System.out.println(test.removeFront());
+    System.out.println(test.removeFront());
     System.out.println(test);
   }
 }
