@@ -9,7 +9,7 @@ public class MyLinkedList<E>{
 
   public String toString(){
     String ans = "[";
-    if (end == null){
+    if (size == 0 || start == null || end == null){
       return "[]";
     }
     Node current = start;
@@ -58,15 +58,31 @@ public class MyLinkedList<E>{
     other.size = 0;
   }
 
-  public E removeFront(){
-    if (size == 1){
-      E ans = start.getData();
-      clear();
-      return ans;
+  private Node getNode(int index) {
+    int current = 0;
+    Node ans = start;
+    while (current < index) {
+      ans = ans.getNext();
+      current++;
     }
-    E ans = start.getData();
-    start = start.getNext();
-    start.setPrev(null);
+    return ans;
+  }
+
+  public E remove(int index){
+    E ans = (E) getNode(index).getData();
+    if (index == 0) {
+     start = getNode(index+1);
+     return ans;
+    }
+    if (getNode(index).getNext() == null) {
+     getNode(index-1).setNext(end);
+     end = getNode(index-1);
+     end.setNext(null);
+     size--;
+     return ans;
+    }
+    getNode(index-1).setNext(getNode(index+1));
+    getNode(index).setPrev(getNode(index-1));
     size--;
     return ans;
   }
@@ -78,9 +94,9 @@ public class MyLinkedList<E>{
     test.add(2);
     test.add(3);
     System.out.println(test);
-    System.out.println(test.removeFront());
-    System.out.println(test.removeFront());
-    System.out.println(test.removeFront());
+    System.out.println(test.remove(0));
+    System.out.println(test.remove(0));
+    System.out.println(test.remove(0));
     System.out.println(test);
   }
 }
