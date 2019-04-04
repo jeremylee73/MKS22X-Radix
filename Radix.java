@@ -4,15 +4,18 @@ public class Radix{
   public static void radixsort(int[] data){
     buckets = new MyLinkedList[20];
     int maxD = maxDigit(data);
-//    for (int d=1; d<=maxD; d++){
-      for (int i=0; i<data.length; i++){
-        int lastDigit = data[i] % 10;
-        if (data[i] < 0){
-          buckets[9-lastDigit].add(data[i]);
-        } else {
-          buckets[10+lastDigit].add(data[i]);
-        }
+    for (int i=0; i<buckets.length; i++){
+      buckets[i] = new MyLinkedList<Integer>();
+    }
+    
+    for (int i=0; i<data.length; i++){
+      int lastDigit = data[i] % 10;
+      if (data[i] < 0){
+        buckets[9-lastDigit].add(data[i]);
+      } else {
+        buckets[10+lastDigit].add(data[i]);
       }
+    }
 
       int count = 0;
       for (int i=0; i<buckets.length; i++){
@@ -22,7 +25,6 @@ public class Radix{
         //   count++;
         // }
       }
-    //}
   }
 
   private static int maxDigit(int[] data){
