@@ -15,7 +15,17 @@ public class Radix{
           int pos = (int) (n / Math.pow(10,i-1)) % 10;
           buckets[pos+9].add(n);
         }
+        
         temp.clear();
+
+        for (int i = 0; i < 20; i++) {
+          temp.extend(buckets[i]);
+        }
+
+        for (MyLinkedList<Integer> bucket : buckets) {
+          bucket.clear();
+        }
+
       }
     }
     // for (int i=0; i<data.length; i++){
