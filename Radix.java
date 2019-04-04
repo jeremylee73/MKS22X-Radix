@@ -37,6 +37,9 @@ public class Radix{
         }
       }
     }
+    for (int i=0; i<data.length; i++) {
+      data[i] = temp.removeFront();
+    }
   }
 
   private static int maxDigit(int[] data){
