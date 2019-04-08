@@ -12,7 +12,7 @@ public class MyLinkedList<E>{
     if (size == 0 || start == null || end == null){
       return "[]";
     }
-    Node current = start;
+    Node<E> current = start;
     while (current.getNext() != null){
       ans += current.getData() + ",";
       current = current.getNext();
@@ -29,10 +29,10 @@ public class MyLinkedList<E>{
 
   public boolean add(E e){
     if (end == null) { // if list is totally empty
-      end = new Node(e,end,null);
+      end = new Node<E>(e,end,null);
       start = end;
     } else {
-      Node newNode = new Node(e, end.getPrev(), null);
+      Node<E> newNode = new Node<E>(e, end.getPrev(), null);
       end.setNext(newNode);
       end = newNode;
     }
@@ -58,9 +58,9 @@ public class MyLinkedList<E>{
     other.size = 0;
   }
 
-  private Node getNode(int index) {
+  private Node<E> getNode(int index) {
     int current = 0;
-    Node ans = start;
+    Node<E> ans = start;
     while (current < index) {
       ans = ans.getNext();
       current++;
@@ -69,21 +69,8 @@ public class MyLinkedList<E>{
   }
 
   public E remove(int index){
-    E ans = (E) getNode(index).getData();
-    if (index == 0) {
-     start = getNode(index+1);
-     return ans;
-    }
-    if (getNode(index).getNext() == null) {
-     getNode(index-1).setNext(end);
-     end = getNode(index-1);
-     end.setNext(null);
-     size--;
-     return ans;
-    }
-    getNode(index-1).setNext(getNode(index+1));
-    getNode(index).setPrev(getNode(index-1));
-    size--;
+    E ans = getNode(index).getData();
+    start = getNode(index+1);
     return ans;
   }
 
