@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Radix{
   public static void radixsort(int[] data){
+    @SuppressWarnings("unchecked")
     MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
     MyLinkedList<Integer> temp = new MyLinkedList<Integer>();
     int maxD = maxDigit(data);
